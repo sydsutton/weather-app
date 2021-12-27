@@ -1,5 +1,7 @@
+import { getAllByTestId } from "@testing-library/react"
 import React, { useState } from "react"
 import { apiKey } from "../apiKey"
+import zipData from "../zipData"
 
 const MainComponent = () => {
     const [zipCode, setZipCode] = useState("")
@@ -17,6 +19,7 @@ const MainComponent = () => {
             console.log("There was an error")
         }
     }
+
 
     return (
         <div>
