@@ -1,22 +1,34 @@
-import { getAllByTestId } from "@testing-library/react"
 import React, { useState } from "react"
+
+import {
+    CircularProgress
+} from "@material-ui/core"
 import { apiKey } from "../apiKey"
-import zipData from "../zipData"
 
 const MainComponent = () => {
     const [zipCode, setZipCode] = useState("")
-    const [data, setData] = useState("")
-    const [iconLink, setIconLink] = useState("")
+    const [cityData, setCityData] = useState("")
+    const [loading, setLoading] = useState(false)
+    const [city, setCity] = useState("")
 
-    const handleSearch = async() => {
+    const handleSearch = () => {
+        setLoading(true)
         try {
-            const res = await fetch(`http://api.openweathermap.org/data/2.5/weather?zip=${zipCode}&appid=${apiKey}`)
-            const data = await res.json()
-            console.log(data)
-            setData(data)
-            setIconLink(`http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`)
+            fetch(`http://api.openweathermap.org/data/2.5/weather?zip=${zipCode}&units=imperial&appid=${apiKey}`)
+                .then(res => res.json())
+                .then(data => {
+                    setCity(data.name)
+                    fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${data.coord.lat}&lon=${data.coord.lon}&units=imperial&appid=${apiKey}`)
+                        .then(res => res.json())
+                        .then(data => {
+                            console.log(data)
+                            setLoading(false)
+                            setCityData(data)
+                        })
+                })
         } catch {
-            console.log("There was an error")
+            alert("There was an error")
+            setLoading(false)
         }
     }
 
@@ -27,10 +39,13 @@ const MainComponent = () => {
                 type="text" 
                 onChange={e => setZipCode(e.target.value)}
             />
-            {data ? <img src={iconLink} /> : null}
+            {loading ? <CircularProgress /> : null}
             <button onClick={() => handleSearch()}>Search</button>
+            {city ? <h1>{city}</h1> : null}
         </div>
     )
 }
 
 export default MainComponent
+
+            // setIconLink(`http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`)
