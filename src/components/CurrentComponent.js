@@ -4,7 +4,8 @@ import {
     Card,
     Button,
     Collapse,
-    Slide
+    Slide,
+    Slider
 } from "@material-ui/core"
 
 const CurrentComponent = ({data, alerts, city}) => {
@@ -33,12 +34,22 @@ const CurrentComponent = ({data, alerts, city}) => {
             <div className="row">
                 <div className="col">
                     <Slide in={true} direction="right" timeout={2000}>
-                        <Card className="p-3 mt-4">
+                        <Card className="p-3 mt-4 jumbo-card bg-light mx-auto">
                             <div className="row justify-content-center">
                                 <h3>{city}</h3>
                             </div>
                             <div className="row">
-                                <div className="col-sm-6">
+                                <div className="col-1 d-sm-block d-none">
+                                    <Slider
+                                        aria-label="Temperature"
+                                        orientation="vertical"
+                                        color="primary"
+                                        defaultValue={Math.round(data.temp)}
+                                        valueLabelDisplay="on"
+                                        readonly
+                                    />
+                                </div>
+                                <div className="col-sm-5">
                                     {data.weather.length > 1 ? data.weather.map((condition,index) => {
                                         return (
                                             <img key={index} src={`http://openweathermap.org/img/wn/${condition.icon}@2x.png`} alt={condition.description} />
@@ -48,7 +59,7 @@ const CurrentComponent = ({data, alerts, city}) => {
                                     }
                                     {alerts ? 
                                         <div>
-                                            <Button variant="contained" color="secondary" className="mb-3" onClick={() => setAlertOpen(!alertOpen)}>See alerts</Button>
+                                            <Button variant="contained" color="secondary" className="mb-3" onClick={() => setAlertOpen(!alertOpen)}>{!alertOpen ? "See" : "Hide"} alerts</Button>
                                             <Collapse in={alertOpen} className="shadow p-3" timeout={1000}>
                                                 <h4>Alert: {alerts[0].event}</h4>
                                                 <h5>From {getTime(alerts[0].start)} until {getTime(alerts[0].end)}</h5>
@@ -63,17 +74,19 @@ const CurrentComponent = ({data, alerts, city}) => {
                                     }
                                 </div>
                                 <div className="col-sm-6">
-                                    <p>Temperature: {Math.round(data.temp)}°</p>
-                                    <p>Feels like: {Math.round(data.feels_like)}°</p>
-                                    <p>{data.weather[0].description}</p>
-                                    <p>Humidity: {data.humidity}%</p>
-                                    <p>UV index: {data.uvi}</p>
-                                    <p>Average visibility: {Math.round(data.visibility / 3.28084)} feet</p>
-                                    <p>Wind speed: {Math.round(data.wind_speed * 2.23693629)} mph</p>
-                                    {data.wind_gust ? <p>Wind gusts: {Math.round(data.wind_gust * 2.23693629)} mph</p> : null}
-                                    <p>Wind direction: {direction}</p>
-                                    <p>Sunrise: {getTime(data.sunrise)} AM</p>
-                                    <p>Sunset: {getTime(data.sunset)} PM</p>
+                                    <ul className="list-unstyled">
+                                        <li>Temperature: {Math.round(data.temp)}°</li>
+                                        <li>Feels like: {Math.round(data.feels_like)}°</li>
+                                        <li>{data.weather[0].description}</li>
+                                        <li>Humidity: {data.humidity}%</li>
+                                        <li>UV index: {data.uvi}</li>
+                                        <li>Average visibility: {Math.round(data.visibility / 3.28084)} feet</li>
+                                        <li>Wind speed: {Math.round(data.wind_speed * 2.23693629)} mph</li>
+                                        {data.wind_gust ? <li>Wind gusts: {Math.round(data.wind_gust * 2.23693629)} mph</li> : null}
+                                        <li>Wind direction: {direction}</li>
+                                        <li>Sunrise: {getTime(data.sunrise)} AM</li>
+                                        <li>Sunset: {getTime(data.sunset)} PM</li>
+                                    </ul>
                                 </div>
                             </div>
                         </Card>

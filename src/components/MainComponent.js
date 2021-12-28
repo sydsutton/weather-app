@@ -17,10 +17,10 @@ const MainComponent = () => {
     const [cityData, setCityData] = useState("")
     const [loading, setLoading] = useState(false)
     const [city, setCity] = useState("")
-    const [currentOpen, setCurrentOpen] = useState(false)
 
     const handleSearch = () => {
         setLoading(true)
+        setCityData("")
         try {
             fetch(`http://api.openweathermap.org/data/2.5/weather?zip=${zipCode}&units=imperial&appid=${apiKey}`)
                 .then(res => res.json())
@@ -59,6 +59,7 @@ const MainComponent = () => {
                     <Button 
                         onClick={() => handleSearch()}
                         variant="contained"
+                        color="primary"
                     >
                         Search
                     </Button>
