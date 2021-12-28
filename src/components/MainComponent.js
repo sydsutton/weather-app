@@ -1,5 +1,7 @@
 import React, { useState } from "react"
 
+import Current from "./CurrentComponent"
+
 import {
     CircularProgress
 } from "@material-ui/core"
@@ -26,6 +28,10 @@ const MainComponent = () => {
                             setCityData(data)
                         })
                 })
+                .catch(err => {
+                    alert("Please enter a valid zip code")
+                    setLoading(false)
+                })
         } catch {
             alert("There was an error")
             setLoading(false)
@@ -42,10 +48,13 @@ const MainComponent = () => {
             {loading ? <CircularProgress /> : null}
             <button onClick={() => handleSearch()}>Search</button>
             {city ? <h1>{city}</h1> : null}
+            {cityData ? 
+                <Current data={cityData.current} alerts={cityData.alerts}/>
+            : 
+            null
+            }   
         </div>
     )
 }
 
 export default MainComponent
-
-            // setIconLink(`http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`)
