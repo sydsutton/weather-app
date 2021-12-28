@@ -3,8 +3,13 @@ import React, { useState } from "react"
 import Current from "./CurrentComponent"
 
 import {
-    CircularProgress
-} from "@material-ui/core"
+    CircularProgress,
+    InputBase,
+    Button,
+    Collapse,
+    Slide
+ } from '@material-ui/core';
+
 import { apiKey } from "../apiKey"
 
 const MainComponent = () => {
@@ -12,6 +17,7 @@ const MainComponent = () => {
     const [cityData, setCityData] = useState("")
     const [loading, setLoading] = useState(false)
     const [city, setCity] = useState("")
+    const [currentOpen, setCurrentOpen] = useState(false)
 
     const handleSearch = () => {
         setLoading(true)
@@ -30,6 +36,7 @@ const MainComponent = () => {
                 })
                 .catch(err => {
                     alert("Please enter a valid zip code")
+                    console.log(err)
                     setLoading(false)
                 })
         } catch {
@@ -40,17 +47,29 @@ const MainComponent = () => {
 
 
     return (
-        <div>
-            <input 
-                type="text" 
-                onChange={e => setZipCode(e.target.value)}
-            />
-            {loading ? <CircularProgress /> : null}
-            <button onClick={() => handleSearch()}>Search</button>
-            {city ? <h1>{city}</h1> : null}
-            {cityData ? 
-                <Current data={cityData.current} alerts={cityData.alerts}/>
-            : 
+        <div className="container text-center mx-auto">
+            <div className="row">
+                <div className="col">
+                    <InputBase
+                        type="text" 
+                        onChange={e => setZipCode(e.target.value)}
+                        className="input px-2 mr-3 mt-5 shadow"
+                        required={true}
+                    />
+                    <Button 
+                        onClick={() => handleSearch()}
+                        variant="contained"
+                    >
+                        Search
+                    </Button>
+                </div>
+            </div>
+            <div className="row">
+                {loading ? <CircularProgress /> : null}
+            </div>
+            {cityData ?
+                <Current data={cityData.current} alerts={cityData.alerts} city={city}/>  
+                : 
             null
             }   
         </div>
