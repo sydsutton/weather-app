@@ -32,9 +32,9 @@ const CurrentComponent = ({data, alerts, city}) => {
     return (
         <div className="container">
             <div className="row">
-                <div className="col">
+                <div className="col-lg-8">
                     <Slide in={true} direction="right" timeout={2000}>
-                        <Card className="p-3 mt-4 jumbo-card bg-light mx-auto">
+                        <Card className="p-3 bg-light mx-auto mb-4">
                             <div className="row justify-content-center">
                                 <h3>{city}</h3>
                             </div>
@@ -91,6 +91,10 @@ const CurrentComponent = ({data, alerts, city}) => {
                             </div>
                         </Card>
                     </Slide>
+                </div>
+                <div className="col-lg-4 d-flex flex-column">
+                    <Button variant="contained" color="primary" className="mb-2">Hourly Forecast</Button>
+                    <Button variant="contained" color="primary">Next 7 days</Button>
                 </div>
             </div>
         </div>

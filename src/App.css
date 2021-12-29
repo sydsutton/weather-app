@@ -3,20 +3,14 @@ body {
   margin: 0;
   padding: 0;
   text-align: center;
+  background-image: linear-gradient( rgba(244, 251, 255, 0.9), rgb(232, 250, 255));
+  min-height: 100vh;
 }
 
 * {
   box-sizing: border-box;
 }
 
-.bg-image {
-  background-image: url('https://source.unsplash.com/random/800×1500/?sky');
-  min-height: 100vh;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position:center;
-  background-attachment: fixed;
-}
 .input {
   background-color: white;
   border-radius: 10px;

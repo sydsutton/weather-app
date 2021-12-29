@@ -7,7 +7,9 @@ import {
     InputBase,
     Button,
     Collapse,
-    Slide
+    Slide, 
+    Card,
+    InputLabel
  } from '@material-ui/core';
 
 import { apiKey } from "../apiKey"
@@ -50,23 +52,28 @@ const MainComponent = () => {
         <div className="container text-center mx-auto">
             <div className="row">
                 <div className="col">
-                    <InputBase
-                        type="text" 
-                        onChange={e => setZipCode(e.target.value)}
-                        className="input px-2 mr-3 mt-5 shadow"
-                        required={true}
-                    />
-                    <Button 
-                        onClick={() => handleSearch()}
-                        variant="contained"
-                        color="primary"
-                    >
-                        Search
-                    </Button>
+                    <div className="jumbotron bg-transparent pt-3">
+                        <h3 className="text-dark float-left">KülWeather</h3>
+                        <InputLabel className="mt-5">Enter a zip code</InputLabel>
+                        <InputBase
+                            type="text" 
+                            onChange={e => setZipCode(e.target.value)}
+                            className="input px-2 mt-2 mr-3 mb-2 shadow-sm"
+                            required={true}
+                        />
+                        <Button 
+                            onClick={() => handleSearch()}
+                            variant="contained"
+                            color="primary"
+                            size="small"
+                        >
+                            Search
+                        </Button>
+                    </div>
                 </div>
             </div>
-            <div className="row">
-                {loading ? <CircularProgress /> : null}
+            <div className="row text-center justify-content-center">
+                {loading ? <CircularProgress color="success" className="mt-5"/> : null}
             </div>
             {cityData ?
                 <Current data={cityData.current} alerts={cityData.alerts} city={city}/>  
