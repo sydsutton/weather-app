@@ -17,4 +17,11 @@ body {
   width: 150px;
 }
 
+#tab-style {
+  border-radius: 10px 10px 0 0;
+}
+
+.width {
+  max-width: 95vw;
+}
 

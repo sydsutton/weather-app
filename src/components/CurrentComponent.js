@@ -9,7 +9,7 @@ import {
 } from "@material-ui/core"
 import { useSelector, useDispatch } from "react-redux"
 
-const CurrentComponent = ({data, alerts, city, zipCode}) => {
+const CurrentComponent = ({data, alerts, city, zipCode, currentOpen}) => {
 
     const dispatch = useDispatch()
     const savedZipCodes = useSelector(state => state.saveZipReducer.savedZipCodes)
@@ -36,9 +36,9 @@ const CurrentComponent = ({data, alerts, city, zipCode}) => {
     return (
         <div className="container">
             <div className="row">
-                <div className="col-lg-8">
-                    <Slide in={true} direction="right" timeout={2000}>
-                        <Card className="p-3 bg-light mx-auto mb-4">
+                <div className="col">
+                    <Collapse in={currentOpen}>
+                        <Card className="p-3 bg-light mx-auto">
                             <div className="row justify-content-center">
                                 <div className="col">
                                     <h3>{city}</h3>
@@ -108,11 +108,7 @@ const CurrentComponent = ({data, alerts, city, zipCode}) => {
                                 </div>
                             </div>
                         </Card>
-                    </Slide>
-                </div>
-                <div className="col-lg-4 d-flex flex-column">
-                    <Button variant="contained" color="primary" className="mb-2">Hourly Forecast</Button>
-                    <Button variant="contained" color="primary">Next 7 days</Button>
+                    </Collapse>
                 </div>
             </div>
         </div>

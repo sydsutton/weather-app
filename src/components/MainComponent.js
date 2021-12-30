@@ -20,6 +20,9 @@ const MainComponent = () => {
     const [cityData, setCityData] = useState("")
     const [loading, setLoading] = useState(false)
     const [city, setCity] = useState("")
+    const [currentOpen, setCurrentOpen] = useState(true)
+    const [hourlyOpen, setHourlyOpen] = useState(false)
+    const [dailyOpen, setDailyOpen] = useState(false)
 
     const savedZipCodes = useSelector(state => state.saveZipReducer.savedZipCodes)
 
@@ -37,6 +40,9 @@ const MainComponent = () => {
                             console.log(data)
                             setLoading(false)
                             setCityData(data)
+                            setCurrentOpen(true)
+                            setHourlyOpen(false)
+                            setDailyOpen(false)
                         })
                 })
                 .catch(err => {
@@ -85,9 +91,49 @@ const MainComponent = () => {
                 {loading ? <CircularProgress className="mt-5"/> : null}
             </div>
             {cityData ?
-                <div>
-                    <Current data={cityData.current} alerts={cityData.alerts} city={city} zipCode={zipCode}/>
-                    <Daily data={cityData.daily} />
+                <div className="row">
+                    <div className="col">
+                        <div className="row justify-content-center">
+                            <button 
+                                className="btn btn-sm p-2" 
+                                id="tab-style" 
+                                style={currentOpen ? {backgroundColor: "white"} : null} 
+                                onClick={() => {
+                                    setCurrentOpen(!currentOpen)
+                                    setHourlyOpen(false)
+                                    setDailyOpen(false)
+                                }}
+                            >
+                                Current Weather
+                            </button> 
+                            <button 
+                                className="btn btn-sm p-2" 
+                                id="tab-style" 
+                                style={hourlyOpen ? {backgroundColor: "white"} : null} 
+                                onClick={() => {
+                                    setCurrentOpen(false)
+                                    setHourlyOpen(!hourlyOpen)
+                                    setDailyOpen(false)
+                                }}
+                            >
+                                Hourly Weather
+                            </button> 
+                            <button 
+                                className="btn btn-sm p-2" 
+                                id="tab-style" 
+                                style={dailyOpen ? {backgroundColor: "white"} : null} 
+                                onClick={() => {
+                                    setCurrentOpen(false)
+                                    setHourlyOpen(false)
+                                    setDailyOpen(!dailyOpen)
+                                }}
+                            >
+                                Daily Weather
+                            </button> 
+                        </div>
+                        <Current data={cityData.current} alerts={cityData.alerts} city={city} zipCode={zipCode} currentOpen={currentOpen}/>
+                        <Daily data={cityData.daily} dailyOpen={dailyOpen} />
+                    </div>
                 </div>
                 : 
                 null
