@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import Current from "./CurrentComponent"
+import Daily from "./DailyComponent"
 import {
     CircularProgress,
     InputBase,
@@ -81,12 +82,15 @@ const MainComponent = () => {
                 </div>
             </div>
             <div className="row text-center justify-content-center">
-                {loading ? <CircularProgress color="success" className="mt-5"/> : null}
+                {loading ? <CircularProgress className="mt-5"/> : null}
             </div>
             {cityData ?
-                <Current data={cityData.current} alerts={cityData.alerts} city={city} zipCode={zipCode}/>  
+                <div>
+                    <Current data={cityData.current} alerts={cityData.alerts} city={city} zipCode={zipCode}/>
+                    <Daily data={cityData.daily} />
+                </div>
                 : 
-            null
+                null
             }   
         </div>
     )

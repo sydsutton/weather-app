@@ -65,7 +65,6 @@ const CurrentComponent = ({data, alerts, city, zipCode}) => {
                                         color="primary"
                                         defaultValue={Math.round(data.temp)}
                                         valueLabelDisplay="on"
-                                        readonly
                                     />
                                 </div>
                                 <div className="col-sm-5">
