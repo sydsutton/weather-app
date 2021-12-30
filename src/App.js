@@ -1,13 +1,18 @@
 import './App.css';
 import Main from "./components/MainComponent"
-import Navbar from "./components/NavbarComponent"
+import { createStore, combineReducers } from "redux"
+import { Provider } from "react-redux"
+import { saveZipReducer } from "./redux/saveZipReducer"
+
+const rootReducer = combineReducers({saveZipReducer})
+
+const store = createStore(rootReducer)
 
 function App() {
   return (
-    <div className="bg-image">
-      {/* <Navbar /> */}
+    <Provider store={store}>
       <Main />
-    </div>
+    </Provider>
   );
 }
 

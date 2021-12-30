@@ -1,7 +1,5 @@
 import React, { useState } from "react"
-
 import Current from "./CurrentComponent"
-
 import {
     CircularProgress,
     InputBase,
@@ -11,14 +9,18 @@ import {
     Card,
     InputLabel
  } from '@material-ui/core';
-
+import { useSelector } from "react-redux"
 import { apiKey } from "../apiKey"
 
+
 const MainComponent = () => {
+
     const [zipCode, setZipCode] = useState("")
     const [cityData, setCityData] = useState("")
     const [loading, setLoading] = useState(false)
     const [city, setCity] = useState("")
+
+    const savedZipCodes = useSelector(state => state.saveZipReducer.savedZipCodes)
 
     const handleSearch = () => {
         setLoading(true)
@@ -47,7 +49,6 @@ const MainComponent = () => {
         }
     }
 
-
     return (
         <div className="container text-center mx-auto">
             <div className="row">
@@ -69,6 +70,13 @@ const MainComponent = () => {
                         >
                             Search
                         </Button>
+                        <ul className="list-unstyled">
+                            {savedZipCodes.map(zip => {
+                                return (
+                                    <li>{zip}</li>
+                                )
+                            })}
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -76,7 +84,7 @@ const MainComponent = () => {
                 {loading ? <CircularProgress color="success" className="mt-5"/> : null}
             </div>
             {cityData ?
-                <Current data={cityData.current} alerts={cityData.alerts} city={city}/>  
+                <Current data={cityData.current} alerts={cityData.alerts} city={city} zipCode={zipCode}/>  
                 : 
             null
             }   

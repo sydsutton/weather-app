@@ -7,8 +7,12 @@ import {
     Slide,
     Slider
 } from "@material-ui/core"
+import { useSelector, useDispatch } from "react-redux"
 
-const CurrentComponent = ({data, alerts, city}) => {
+const CurrentComponent = ({data, alerts, city, zipCode}) => {
+
+    const dispatch = useDispatch()
+    const savedZipCodes = useSelector(state => state.saveZipReducer.savedZipCodes)
 
     const [alertOpen, setAlertOpen] = useState(false)
     const [alertDetailOpen, setAlertDetailOpen] = useState(false)
@@ -36,7 +40,22 @@ const CurrentComponent = ({data, alerts, city}) => {
                     <Slide in={true} direction="right" timeout={2000}>
                         <Card className="p-3 bg-light mx-auto mb-4">
                             <div className="row justify-content-center">
-                                <h3>{city}</h3>
+                                <div className="col">
+                                    <h3>{city}</h3>
+                                    {savedZipCodes.includes(zipCode) ? 
+                                    <button 
+                                        // onClick={() => dispatch({type: "SAVE_ZIP", payload: zipCode})}
+                                        className="btn badge badge-pill badge-primary shadow-sm">
+                                            Saved
+                                    </button>
+                                    :
+                                    <button 
+                                        onClick={() => dispatch({type: "SAVE_ZIP", payload: zipCode})}
+                                        className="btn badge badge-pill badge-success shadow-sm">
+                                            Save {zipCode}
+                                    </button>
+                                    }
+                                </div>
                             </div>
                             <div className="row">
                                 <div className="col-1 d-sm-block d-none">
