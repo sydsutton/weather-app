@@ -27,7 +27,7 @@ const DailyComponent = ({data, dailyOpen}) => {
     let arr = ["N","NNE","NE","ENE","E","ESE", "SE", "SSE","S","SSW","SW","WSW","W","WNW","NW","NNW"]
     let direction = arr[(val % 16)]
 
-    console.log(data.length, "daily")
+    // console.log(data.length, "daily")
 
     return (
         <div className="container">

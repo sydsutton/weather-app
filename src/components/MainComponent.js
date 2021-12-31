@@ -97,7 +97,7 @@ const MainComponent = () => {
                             <button 
                                 className="btn btn-sm p-2" 
                                 id="tab-style" 
-                                style={currentOpen ? {backgroundColor: "white"} : null} 
+                                style={currentOpen ? {backgroundColor: "#f7f7f7", fontWeight: "bold", zIndex: "10"} : {backgroundColor: "grey"}} 
                                 onClick={() => {
                                     setCurrentOpen(!currentOpen)
                                     setHourlyOpen(false)
@@ -107,9 +107,9 @@ const MainComponent = () => {
                                 Current Weather
                             </button> 
                             <button 
-                                className="btn btn-sm p-2" 
+                                className="btn btn-sm p-2 shadow-sm" 
                                 id="tab-style" 
-                                style={hourlyOpen ? {backgroundColor: "white"} : null} 
+                                style={hourlyOpen ? {backgroundColor: "#f7f7f7", fontWeight: "bold", zIndex: "10"} : {backgroundColor: "grey"}} 
                                 onClick={() => {
                                     setCurrentOpen(false)
                                     setHourlyOpen(!hourlyOpen)
@@ -121,7 +121,7 @@ const MainComponent = () => {
                             <button 
                                 className="btn btn-sm p-2" 
                                 id="tab-style" 
-                                style={dailyOpen ? {backgroundColor: "white"} : null} 
+                                style={dailyOpen ? {backgroundColor: "#f7f7f7", fontWeight: "bold", zIndex: "10"} : {backgroundColor: "grey"}} 
                                 onClick={() => {
                                     setCurrentOpen(false)
                                     setHourlyOpen(false)

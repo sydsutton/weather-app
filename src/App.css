@@ -3,8 +3,13 @@ body {
   margin: 0;
   padding: 0;
   text-align: center;
-  background-image: linear-gradient( rgba(244, 251, 255, 0.9), rgb(232, 250, 255));
+  /* background-image: linear-gradient( rgba(244, 251, 255, 0.9), rgb(232, 250, 255)); */
+  /* background-image: url('./images/weather-background.jpg'); */
+  background-image: linear-gradient(135deg, #253a4b, #3d607a);
   min-height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
 }
 
 * {
@@ -20,8 +25,3 @@ body {
 #tab-style {
   border-radius: 10px 10px 0 0;
 }
-
-.width {
-  max-width: 95vw;
-}
-
