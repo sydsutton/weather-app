@@ -38,16 +38,17 @@ const CurrentComponent = ({data, alerts, city, zipCode, currentOpen}) => {
     return (
         <div className="container">
             <Collapse in={currentOpen}>
-                <Card className="bg-light mb-5 pb-3">
+                <Card className="mb-5 pb-3">
                     <div className="row">
                         <div className="col justify-content-center">
                             <div className="row align-items-center">
                                 <div className="col-md-6 mx-auto">
-                                    <h3>{city}</h3>
+                                    <h3 className="mt-4">{city}</h3>
                                     {savedZipCodes.includes(zipCode) ? 
                                     <button 
                                         // onClick={() => dispatch({type: "SAVE_ZIP", payload: zipCode})}
-                                        className="btn badge badge-pill badge-primary shadow-sm ml-2">
+                                        className="btn badge badge-pill badge-primary shadow-sm ml-2"
+                                    >
                                             Saved
                                     </button>
                                     :
@@ -99,7 +100,7 @@ const CurrentComponent = ({data, alerts, city, zipCode, currentOpen}) => {
                                         :
                                         null
                                     }
-                                    <Button variant="outlined" onClick={() => setDetailsOpen(!detailsOpen)}>More details</Button>
+                                    <Button variant="outlined" color="primary" onClick={() => setDetailsOpen(!detailsOpen)}>More details</Button>
                                     <Collapse in={detailsOpen} timeout={1000}>
                                         <ul className="list-unstyled mt-3">
                                             <li>Humidity: {data.humidity}%</li>
