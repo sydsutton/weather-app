@@ -5,6 +5,11 @@ export const saveZip = zipCode => ({
     payload: zipCode
 })
 
+export const deleteZipCode = zipCode => ({
+    type: ActionTypes.DELETE_ZIP,
+    payload: zipCode
+})
+
 export const searchZip = zipCode => ({
     type: ActionTypes.SEARCH_ZIP,
     payload: zipCode

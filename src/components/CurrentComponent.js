@@ -13,7 +13,7 @@ import { useSelector, useDispatch } from "react-redux"
 const CurrentComponent = ({data, alerts, city, zipCode, currentOpen}) => {
 
     const dispatch = useDispatch()
-    const savedZipCodes = useSelector(state => state.saveZipReducer.savedZipCodes)
+    const savedZipCodes = useSelector(state => state.zipReducer.savedZipCodes)
 
     const [alertOpen, setAlertOpen] = useState(false)
     const [alertDetailOpen, setAlertDetailOpen] = useState(false)
@@ -34,11 +34,11 @@ const CurrentComponent = ({data, alerts, city, zipCode, currentOpen}) => {
     let val = Math.floor(( data.wind_deg / 22.5) + .5)
     let arr = ["N","NNE","NE","ENE","E","ESE", "SE", "SSE","S","SSW","SW","WSW","W","WNW","NW","NNW"]
     let direction = arr[(val % 16)]
-
+    console.log(savedZipCodes.includes(zipCode))
     return (
         <div className="container">
             <Collapse in={currentOpen}>
-                <Card className="mb-5 pb-3">
+                <Card id="full-width" className="mb-5 bg-light pb-3">
                     <div className="row">
                         <div className="col justify-content-center">
                             <div className="row align-items-center">
@@ -46,7 +46,6 @@ const CurrentComponent = ({data, alerts, city, zipCode, currentOpen}) => {
                                     <h3 className="mt-4">{city}</h3>
                                     {savedZipCodes.includes(zipCode) ? 
                                     <button 
-                                        // onClick={() => dispatch({type: "SAVE_ZIP", payload: zipCode})}
                                         className="btn badge badge-pill badge-primary shadow-sm ml-2"
                                     >
                                             Saved
@@ -100,7 +99,7 @@ const CurrentComponent = ({data, alerts, city, zipCode, currentOpen}) => {
                                         :
                                         null
                                     }
-                                    <Button variant="outlined" color="primary" onClick={() => setDetailsOpen(!detailsOpen)}>More details</Button>
+                                    <Button variant="outlined" color="primary" onClick={() => setDetailsOpen(!detailsOpen)}>{detailsOpen ? "Less details" : "More details"}</Button>
                                     <Collapse in={detailsOpen} timeout={1000}>
                                         <ul className="list-unstyled mt-3">
                                             <li>Humidity: {data.humidity}%</li>
