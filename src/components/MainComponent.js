@@ -11,7 +11,6 @@ import {
     InputLabel
  } from '@material-ui/core';
 import { useSelector, useDispatch } from "react-redux"
-
 import { ThemeProvider, createTheme } from "@material-ui/core/styles"
 import { 
     indigo,
@@ -44,6 +43,8 @@ const MainComponent = () => {
     const [error, setError] = useState(true)
     const [tempZip, setTempZip] = useState()
 
+    const API_KEY = process.env.REACT_APP_API_KEY
+
     const savedZipCodes = useSelector(state => state.zipReducer.savedZipCodes)
     const dispatch = useDispatch()
 
@@ -52,11 +53,11 @@ const MainComponent = () => {
         setLoading(true)
         // setCityData("")
         try {
-            fetch(`http://api.openweathermap.org/data/2.5/weather?zip=${zipCode}&units=imperial&appid=${process.env.REACT_APP_API_KEY}`)
+            fetch(`http://api.openweathermap.org/data/2.5/weather?zip=${zipCode}&units=imperial&appid=${API_KEY}`)
                 .then(res => res.json())
                 .then(data => {
                     setCity(data.name)
-                    fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${data.coord.lat}&lon=${data.coord.lon}&units=imperial&appid=${process.env.REACT_APP_API_KEY}`)
+                    fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${data.coord.lat}&lon=${data.coord.lon}&units=imperial&appid=${API_KEY}`)
                         .then(res => res.json())
                         .then(data => {
                             console.log(data)
