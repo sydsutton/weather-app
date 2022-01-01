@@ -56,7 +56,7 @@ const MainComponent = () => {
                 .then(res => res.json())
                 .then(data => {
                     setCity(data.name)
-                    fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${data.coord.lat}&lon=${data.coord.lon}&units=imperial&appid=${apiKey}`)
+                    fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${data.coord.lat}&lon=${data.coord.lon}&units=imperial&appid=${process.env.REACT_APP_API_KEY}`)
                         .then(res => res.json())
                         .then(data => {
                             console.log(data)
