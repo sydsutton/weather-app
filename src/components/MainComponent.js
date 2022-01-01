@@ -11,7 +11,7 @@ import {
     InputLabel
  } from '@material-ui/core';
 import { useSelector, useDispatch } from "react-redux"
-import { apiKey } from "../apiKey"
+
 import { ThemeProvider, createTheme } from "@material-ui/core/styles"
 import { 
     indigo,
@@ -52,7 +52,7 @@ const MainComponent = () => {
         setLoading(true)
         // setCityData("")
         try {
-            fetch(`http://api.openweathermap.org/data/2.5/weather?zip=${zipCode}&units=imperial&appid=${apiKey}`)
+            fetch(`http://api.openweathermap.org/data/2.5/weather?zip=${zipCode}&units=imperial&appid=${process.env.REACT_APP_API_KEY}`)
                 .then(res => res.json())
                 .then(data => {
                     setCity(data.name)
