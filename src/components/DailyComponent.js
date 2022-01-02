@@ -8,7 +8,7 @@ import {
 
 const DailyComponent = ({data, dailyOpen}) => {
 
-    const [dayOpen, setDayOpen] = useState(false)
+    const [selectedIndex, setSelectedIndex] = useState()
 
     const getTime = (time) => {
         let unix_timestamp = time
@@ -35,11 +35,26 @@ const DailyComponent = ({data, dailyOpen}) => {
             <div className="row">
                 <div className="col">
                     {data.slice(1, 8).map((data, index) => {
+                        console.log(data)
                         return (
                             <Collapse in={dailyOpen} timeout={0}> 
-                                <Card>
-                                    <Button onClick={() => setDayOpen(!dayOpen)}>See Day</Button>
-                                        <Collapse in={dayOpen}>
+                                <Card className="bg-light">
+                                    <Button className="w-100 shadow-sm bg-light text-dark" onClick={() => {
+                                                    {index === selectedIndex ? setSelectedIndex() : setSelectedIndex(index)}
+                                                }}
+                                            >
+                                        <div className="col">     
+                                        <h4>{getDate(data.dt)}</h4>   
+                                            <Collapse in={index === selectedIndex ? false : true} timeout={1000}>                               
+                                                    <ul className="list-unstyled">
+                                                        <li>Temperature: {Math.round(data.temp.max)}°</li>
+                                                        <li>Feels like: {Math.round(data.feels_like.eve)}°</li>
+                                                        <li>{data.weather[0].description}</li>
+                                                    </ul>
+                                            </Collapse>
+                                        </div>
+                                    </Button>
+                                        <Collapse in={index === selectedIndex ? true : false} timeout={1000}>
                                         <div className="p-3 bg-light mx-auto mb-4" key={index}> 
                                             <div className="row justify-content-center">
                                                 <div className="col">

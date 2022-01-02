@@ -87,7 +87,7 @@ const MainComponent = () => {
             <div className="container text-center mx-auto">
                 <div className="row">
                     <div className="col">
-                        <div className="jumbotron pt-3 full-width">
+                        <div className="jumbotron pt-3">
                             <h1>QWeather</h1>
                             <p>Fast. Easy. Q.</p>
                         </div>
