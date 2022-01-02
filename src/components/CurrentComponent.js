@@ -38,11 +38,11 @@ const CurrentComponent = ({data, alerts, city, zipCode, currentOpen}) => {
     return (
         <div className="container">
             <Collapse in={currentOpen}>
-                <Card id="full-width" className="mb-5 bg-light pb-3">
+                <Card className="mb-5 bg-light pb-3 full-width">
                     <div className="row">
                         <div className="col justify-content-center">
                             <div className="row align-items-center">
-                                <div className="col-md-6 mx-auto">
+                                <div className="col-md-8 mx-auto">
                                     <h3 className="mt-4">{city}</h3>
                                     {savedZipCodes.includes(zipCode) ? 
                                     <button 
@@ -69,8 +69,8 @@ const CurrentComponent = ({data, alerts, city, zipCode, currentOpen}) => {
                                     <div className="row">
                                         <div className="col">
                                             <ul className="list-unstyled">
-                                                <li>Currently <strong>{Math.round(data.temp)}°</strong></li>
-                                                <li>Feels like <strong>{Math.round(data.feels_like)}°</strong></li>
+                                                <li>Currently <strong>{Math.round(data.temp)}°F</strong></li>
+                                                <li>Feels like <strong>{Math.round(data.feels_like)}°F</strong></li>
                                             </ul>
                                         </div>
                                         <div className="col">

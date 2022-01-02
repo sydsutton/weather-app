@@ -13,15 +13,15 @@ import {
 import { useSelector, useDispatch } from "react-redux"
 import { ThemeProvider, createTheme } from "@material-ui/core/styles"
 import { 
-    indigo,
-    red
+    red,
+    teal
 } from "@material-ui/core/colors"
 
 const theme = createTheme({
     palette: {
         primary: {
-            main: indigo[500],
-            dark: indigo[800]
+            main: teal[500],
+            dark: teal[800]
         },
         secondary: {
             dark: red[900],
@@ -49,6 +49,7 @@ const MainComponent = () => {
     const dispatch = useDispatch()
 
     const handleSearch = () => {
+        console.log(zipCode)
         setTempZip()
         setLoading(true)
         setCityData("")
@@ -86,8 +87,9 @@ const MainComponent = () => {
             <div className="container text-center mx-auto">
                 <div className="row">
                     <div className="col">
-                        <div className="jumbotron pt-3">
+                        <div className="jumbotron pt-3 full-width">
                             <h1>QWeather</h1>
+                            <p>Fast. Easy. Q.</p>
                         </div>
                         <InputLabel className="text-light">Enter a zip code</InputLabel>
                             <InputBase
@@ -112,22 +114,23 @@ const MainComponent = () => {
                         <ul className="list-unstyled d-flex flex-wrap justify-content-center">
                             {savedZipCodes.map(zip => {
                                 return (
-                                    <button 
-                                        className="btn btn-sm btn-primary py-0 mx-1 my-2"
-                                        style={{borderRadius: "20px"}}
-                                        onClick={() => {
-                                            setZipCode(zip)
-                                            handleSearch()}}
-                                    >
-                                        {zip} 
+                                    <div>
                                         <button 
-                                            className="btn btn-sm btn-primary ml-2 py-0"
+                                            className="btn btn-sm btn-primary py-0 my-2"
+                                            style={{borderRadius: "20px 0 0 20px"}}
+                                            onClick={() => setZipCode(zip)}
+                                        >
+                                            {zip} 
+                                        </button>
+                                        <button 
+                                            className="btn btn-sm btn-primary py-0 mr-2"
+                                            style={{borderRadius: "0 20px 20px 0"}}
                                             id="remove-btn"
                                             onClick={() => dispatch({type: "DELETE_ZIP", payload: zip})}
                                         >
                                             -
                                         </button>
-                                    </button>
+                                    </div>
                                 )
                             })}
                         </ul>
