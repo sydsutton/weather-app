@@ -40,10 +40,11 @@ const MainComponent = () => {
     const [currentOpen, setCurrentOpen] = useState(true)
     const [hourlyOpen, setHourlyOpen] = useState(false)
     const [dailyOpen, setDailyOpen] = useState(false)
-    const [error, setError] = useState(true)
+    const [error, setError] = useState(false)
     const [tempZip, setTempZip] = useState()
 
-    const API_KEY = process.env.REACT_APP_API_KEY
+    // const API_KEY = process.env.REACT_APP_API_KEY
+    const API_KEY = "f2aa0243342f9bb93b15727c5c8fef93"
 
     const savedZipCodes = useSelector(state => state.zipReducer.savedZipCodes)
     const dispatch = useDispatch()
@@ -51,7 +52,7 @@ const MainComponent = () => {
     const handleSearch = () => {
         setTempZip()
         setLoading(true)
-        // setCityData("")
+        setCityData("")
         try {
             fetch(`http://api.openweathermap.org/data/2.5/weather?zip=${zipCode}&units=imperial&appid=${API_KEY}`)
                 .then(res => res.json())
@@ -115,7 +116,9 @@ const MainComponent = () => {
                                     <button 
                                         className="btn btn-sm btn-primary py-0 mx-1 my-2"
                                         style={{borderRadius: "20px"}}
-                                        onClick={() => setZipCode(zip)}
+                                        onClick={() => {
+                                            setZipCode(zip)
+                                            handleSearch()}}
                                     >
                                         {zip} 
                                         <button 
@@ -135,50 +138,52 @@ const MainComponent = () => {
                     {loading ? <CircularProgress className="mt-5"/> : null}
                 </div>
                 {cityData ?
-                    <div className="row">
-                        <div className="col">
-                            <div className="row justify-content-center">
-                                <button 
-                                    className="btn btn-sm p-2" 
-                                    id="tab-style" 
-                                    style={currentOpen ? {backgroundColor: "#f7f7f7", fontWeight: "bold", zIndex: "10"} : {backgroundColor: "grey"}} 
-                                    onClick={() => {
-                                        setCurrentOpen(!currentOpen)
-                                        setHourlyOpen(false)
-                                        setDailyOpen(false)
-                                    }}
-                                >
-                                    Current Weather
-                                </button> 
-                                <button 
-                                    className="btn btn-sm p-2 shadow-sm" 
-                                    id="tab-style" 
-                                    style={hourlyOpen ? {backgroundColor: "#f7f7f7", fontWeight: "bold", zIndex: "10"} : {backgroundColor: "grey"}} 
-                                    onClick={() => {
-                                        setCurrentOpen(false)
-                                        setHourlyOpen(!hourlyOpen)
-                                        setDailyOpen(false)
-                                    }}
-                                >
-                                    Hourly Weather
-                                </button> 
-                                <button 
-                                    className="btn btn-sm p-2" 
-                                    id="tab-style" 
-                                    style={dailyOpen ? {backgroundColor: "#f7f7f7", fontWeight: "bold", zIndex: "10"} : {backgroundColor: "grey"}} 
-                                    onClick={() => {
-                                        setCurrentOpen(false)
-                                        setHourlyOpen(false)
-                                        setDailyOpen(!dailyOpen)
-                                    }}
-                                >
-                                    Daily Weather
-                                </button> 
+                    <Slide in={cityData} direction="up" timeout={1000}>
+                        <div className="row">
+                            <div className="col">
+                                <div className="row justify-content-center">
+                                    <button 
+                                        className="btn btn-sm p-2" 
+                                        id="tab-style" 
+                                        style={currentOpen ? {backgroundColor: "#f7f7f7", fontWeight: "bold", zIndex: "10"} : {backgroundColor: "grey"}} 
+                                        onClick={() => {
+                                            setCurrentOpen(!currentOpen)
+                                            setHourlyOpen(false)
+                                            setDailyOpen(false)
+                                        }}
+                                    >
+                                        Current Weather
+                                    </button> 
+                                    <button 
+                                        className="btn btn-sm p-2 shadow-sm" 
+                                        id="tab-style" 
+                                        style={hourlyOpen ? {backgroundColor: "#f7f7f7", fontWeight: "bold", zIndex: "10"} : {backgroundColor: "grey"}} 
+                                        onClick={() => {
+                                            setCurrentOpen(false)
+                                            setHourlyOpen(!hourlyOpen)
+                                            setDailyOpen(false)
+                                        }}
+                                    >
+                                        Hourly Weather
+                                    </button> 
+                                    <button 
+                                        className="btn btn-sm p-2" 
+                                        id="tab-style" 
+                                        style={dailyOpen ? {backgroundColor: "#f7f7f7", fontWeight: "bold", zIndex: "10"} : {backgroundColor: "grey"}} 
+                                        onClick={() => {
+                                            setCurrentOpen(false)
+                                            setHourlyOpen(false)
+                                            setDailyOpen(!dailyOpen)
+                                        }}
+                                    >
+                                        Daily Weather
+                                    </button> 
+                                </div>
+                                <Current data={cityData.current} alerts={cityData.alerts} city={city} zipCode={tempZip} currentOpen={currentOpen}/>
+                                <Daily data={cityData.daily} dailyOpen={dailyOpen} />
                             </div>
-                            <Current data={cityData.current} alerts={cityData.alerts} city={city} zipCode={tempZip} currentOpen={currentOpen}/>
-                            <Daily data={cityData.daily} dailyOpen={dailyOpen} />
                         </div>
-                    </div>
+                    </Slide>
                     : 
                     null
                 }   
