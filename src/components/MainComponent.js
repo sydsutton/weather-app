@@ -43,8 +43,7 @@ const MainComponent = () => {
     const [error, setError] = useState(false)
     const [tempZip, setTempZip] = useState()
 
-    // const API_KEY = process.env.REACT_APP_API_KEY
-    const API_KEY = "f2aa0243342f9bb93b15727c5c8fef93"
+    const API_KEY = process.env.REACT_APP_API_KEY
 
     const savedZipCodes = useSelector(state => state.zipReducer.savedZipCodes)
     const dispatch = useDispatch()
