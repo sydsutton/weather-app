@@ -38,7 +38,7 @@ const CurrentComponent = ({data, alerts, city, zipCode, currentOpen}) => {
     return (
         <div className="container">
             <Collapse in={currentOpen} timeout={0}>
-                <Card className="mb-5 pb-3 full-width text-dark" style={{backgroundColor: "#bbdefb"}}>
+                <Card className="mb-5 pb-3 full-width text-dark gradient" >
                     <div className="row">
                         <div className="col justify-content-center">
                             <div className="row align-items-center">

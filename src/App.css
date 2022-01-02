@@ -4,7 +4,7 @@ body {
   padding: 0;
   text-align: center;
   /* background-image: linear-gradient( rgba(244, 251, 255, 0.9), rgb(232, 250, 255)); */
-  background-image: linear-gradient(135deg, #0c0933, #101f50);
+  background-image: linear-gradient(175deg, #0c0933, #324891);
   min-height: 100vh;
   background-repeat: no-repeat;
   background-size: cover;
@@ -41,6 +41,10 @@ body {
 
   #remove-btn:hover {
     background-color: rgb(197, 48, 48);
+  }
+
+  .gradient {
+    background-image: linear-gradient(180deg, rgb(194, 199, 206), rgb(229, 237, 243));
   }
 
 @media(min-width: 300px) and (max-width: 500px){

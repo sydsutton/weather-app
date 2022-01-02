@@ -148,7 +148,7 @@ const MainComponent = () => {
                                     <button 
                                         className="btn btn-sm p-2" 
                                         id="tab-style" 
-                                        style={currentOpen ? {backgroundColor: "#bbdefb", fontWeight: "bold", zIndex: "10"} : {backgroundColor: "grey"}} 
+                                        style={currentOpen ? {backgroundColor: "rgb(194, 199, 206)", fontWeight: "bold", zIndex: "10"} : {backgroundColor: "grey"}} 
                                         onClick={() => {
                                             setCurrentOpen(!currentOpen)
                                             setHourlyOpen(false)
@@ -160,7 +160,7 @@ const MainComponent = () => {
                                     <button 
                                         className="btn btn-sm p-2 shadow-sm" 
                                         id="tab-style" 
-                                        style={hourlyOpen ? {backgroundColor: "#bbdefb", fontWeight: "bold", zIndex: "10"} : {backgroundColor: "grey"}} 
+                                        style={hourlyOpen ? {backgroundColor: "rgb(194, 199, 206)", fontWeight: "bold", zIndex: "10"} : {backgroundColor: "grey"}} 
                                         onClick={() => {
                                             setCurrentOpen(false)
                                             setHourlyOpen(!hourlyOpen)
@@ -172,7 +172,7 @@ const MainComponent = () => {
                                     <button 
                                         className="btn btn-sm p-2" 
                                         id="tab-style" 
-                                        style={dailyOpen ? {backgroundColor: "#bbdefb", fontWeight: "bold", zIndex: "10"} : {backgroundColor: "grey"}} 
+                                        style={dailyOpen ? {backgroundColor: "rgb(194, 199, 206)", fontWeight: "bold", zIndex: "10"} : {backgroundColor: "grey"}} 
                                         onClick={() => {
                                             setCurrentOpen(false)
                                             setHourlyOpen(false)

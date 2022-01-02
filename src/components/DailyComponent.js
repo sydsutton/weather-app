@@ -23,7 +23,10 @@ const DailyComponent = ({data, dailyOpen}) => {
     const getDate = (date) => {
         let unix_timestamp = date
         let newDate = new Date(unix_timestamp * 1000);
-        return newDate.toLocaleDateString()
+        let calendarDate = newDate.toLocaleDateString()
+        let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+        let dayOfWeek = newDate.getDay()
+        return `${days[dayOfWeek]} ${calendarDate}`
     }
 
     let val = Math.floor(( data.wind_deg / 22.5) + .5)
@@ -31,46 +34,43 @@ const DailyComponent = ({data, dailyOpen}) => {
     let direction = arr[(val % 16)]
 
     return (
-        <div className="container">
+        <div className="container mb-5">
             <div className="row">
                 <div className="col">
                     {data.slice(1, 8).map((data, index) => {
                         console.log(data)
                         return (
                             <Collapse in={dailyOpen} timeout={0}> 
-                                <Card className="full-width bg-light">
-                                    <Button variant="contained" color="secondary" className="w-100 shadow-md text-dark border-bottom border-dark" onClick={() => {
+                                <Card className="full-width bg-light mb-1">
+                                    <Button variant="contained" className="w-100 shadow-md text-dark gradient" onClick={() => {
                                                     {index === selectedIndex ? setSelectedIndex() : setSelectedIndex(index)}
                                                 }}
                                             >
                                         <div className="col pt-2">     
-                                            <h4>{getDate(data.dt)}</h4>   
+                                            <div className="col d-flex flex-row justify-content-between align-items-center">
+                                                <div/>
+                                                <h5>{getDate(data.dt)}</h5>   
+                                                <h4>{index === selectedIndex ? "-" : "+"}</h4>
+                                            </div>
                                                 <Collapse in={index === selectedIndex ? false : true} timeout={1000}> 
                                                     <hr className="mt-0" />
                                                     <div className="row">
-                                                        <div className="col-1"/>
                                                         <div className="col-5 my-auto text-right">
                                                             <img src={`http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`} alt={data.weather[0].description} />
                                                         </div>
                                                         <div className="col-5 my-auto text-left">
                                                             <ul className="list-unstyled small">
-                                                                <li>Temperature: {Math.round(data.temp.max)}°</li>
+                                                                <li>Max temperature: {Math.round(data.temp.max)}°</li>
                                                                 <li>Feels like: {Math.round(data.feels_like.eve)}°</li>
                                                                 <li>{data.weather[0].description}</li>
                                                             </ul>
                                                         </div>
-                                                        <div className="col-1"/>
                                                     </div>
                                                 </Collapse>
                                         </div>
                                     </Button>
                                         <Collapse in={index === selectedIndex ? true : false} timeout={1000}>
                                         <div className="p-3 bg-light mx-auto mb-4" key={index}> 
-                                            <div className="row justify-content-center">
-                                                <div className="col">
-                                                    {getDate(data.dt)}
-                                                </div>
-                                            </div>
                                             <div className="row">
                                                 <div className="col-1 d-sm-block d-none">
                                                 </div>
