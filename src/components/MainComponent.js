@@ -53,11 +53,11 @@ const MainComponent = () => {
         setLoading(true)
         setCityData("")
         try {
-            fetch(`http://api.openweathermap.org/data/2.5/weather?zip=${zipCode}&units=imperial&appid=${API_KEY}`)
+            fetch(`https://crossorigin.me/http://api.openweathermap.org/data/2.5/weather?zip=${zipCode}&units=imperial&appid=${API_KEY}`)
                 .then(res => res.json())
                 .then(data => {
                     setCity(data.name)
-                    fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${data.coord.lat}&lon=${data.coord.lon}&units=imperial&appid=${API_KEY}`)
+                    fetch(`https://crossorigin.me/https://api.openweathermap.org/data/2.5/onecall?lat=${data.coord.lat}&lon=${data.coord.lon}&units=imperial&appid=${API_KEY}`)
                         .then(res => res.json())
                         .then(data => {
                             console.log(data)
