@@ -28,10 +28,11 @@ body {
 }
 
 .jumbotron {
-      background-image: url('./images/weather-background.jpg');
+      /* background-image: url('./images/weather-background.jpg'); */
+      /* background-color: #dbdbdb; */
       background-size: cover;
       height: 150px;
-      /* background-blend-mode: luminosity; */
+      /* background-blend-mode:difference */
   } 
 
   .Mui-error {

@@ -38,20 +38,30 @@ const DailyComponent = ({data, dailyOpen}) => {
                         console.log(data)
                         return (
                             <Collapse in={dailyOpen} timeout={0}> 
-                                <Card className="bg-light">
-                                    <Button className="w-100 shadow-sm bg-light text-dark" onClick={() => {
+                                <Card className="full-width bg-light">
+                                    <Button variant="contained" color="secondary" className="w-100 shadow-md text-dark border-bottom border-dark" onClick={() => {
                                                     {index === selectedIndex ? setSelectedIndex() : setSelectedIndex(index)}
                                                 }}
                                             >
-                                        <div className="col">     
-                                        <h4>{getDate(data.dt)}</h4>   
-                                            <Collapse in={index === selectedIndex ? false : true} timeout={1000}>                               
-                                                    <ul className="list-unstyled">
-                                                        <li>Temperature: {Math.round(data.temp.max)}°</li>
-                                                        <li>Feels like: {Math.round(data.feels_like.eve)}°</li>
-                                                        <li>{data.weather[0].description}</li>
-                                                    </ul>
-                                            </Collapse>
+                                        <div className="col pt-2">     
+                                            <h4>{getDate(data.dt)}</h4>   
+                                                <Collapse in={index === selectedIndex ? false : true} timeout={1000}> 
+                                                    <hr className="mt-0" />
+                                                    <div className="row">
+                                                        <div className="col-1"/>
+                                                        <div className="col-5 my-auto text-right">
+                                                            <img src={`http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`} alt={data.weather[0].description} />
+                                                        </div>
+                                                        <div className="col-5 my-auto text-left">
+                                                            <ul className="list-unstyled small">
+                                                                <li>Temperature: {Math.round(data.temp.max)}°</li>
+                                                                <li>Feels like: {Math.round(data.feels_like.eve)}°</li>
+                                                                <li>{data.weather[0].description}</li>
+                                                            </ul>
+                                                        </div>
+                                                        <div className="col-1"/>
+                                                    </div>
+                                                </Collapse>
                                         </div>
                                     </Button>
                                         <Collapse in={index === selectedIndex ? true : false} timeout={1000}>
@@ -74,9 +84,16 @@ const DailyComponent = ({data, dailyOpen}) => {
                                                     }
                                                 </div>
                                                 <div className="col-sm-6">
-                                                    <ul className="list-unstyled">
-                                                        <li>Temperature: {Math.round(data.temp)}°</li>
-                                                        <li>Feels like: {Math.round(data.feels_like)}°</li>
+                                                    <ul className="list-unstyled text-left mt-3">
+                                                        <li>Max temperature: {Math.round(data.temp.max)}° F</li>
+                                                        <li>Min temperature: {Math.round(data.temp.min)}° F</li>
+                                                        <br/>
+                                                        <li>Day temperature: {Math.round(data.temp.day)}° F</li>
+                                                        <li>Feels like: {Math.round(data.feels_like.day)}° F</li>
+                                                        <br/>
+                                                        <li>Night temperature: {Math.round(data.temp.night)}° F</li>
+                                                        <li>Feels like: {Math.round(data.feels_like.night)}° F</li>
+                                                        <hr/>
                                                         <li>{data.weather[0].description}</li>
                                                         <li>Humidity: {data.humidity}%</li>
                                                         <li>UV index: {data.uvi}</li>

@@ -37,8 +37,8 @@ const CurrentComponent = ({data, alerts, city, zipCode, currentOpen}) => {
     console.log(savedZipCodes.includes(zipCode))
     return (
         <div className="container">
-            <Collapse in={currentOpen}>
-                <Card className="mb-5 bg-light pb-3 full-width">
+            <Collapse in={currentOpen} timeout={0}>
+                <Card className="mb-5 pb-3 full-width text-dark" style={{backgroundColor: "#bbdefb"}}>
                     <div className="row">
                         <div className="col justify-content-center">
                             <div className="row align-items-center">
@@ -86,7 +86,7 @@ const CurrentComponent = ({data, alerts, city, zipCode, currentOpen}) => {
                                 <div className="col">
                                     {alerts ? 
                                         <div>
-                                            <Button variant="contained" color="secondary" onClick={() => setAlertOpen(!alertOpen)}>{!alertOpen ? "See" : "Hide"} alerts</Button>
+                                            <Button className="btn btn-danger btn-sm" onClick={() => setAlertOpen(!alertOpen)}>{!alertOpen ? "See" : "Hide"} alerts</Button>
                                             <Collapse in={alertOpen} className="mb-3" timeout={1000}>
                                                 <h4>Alert: {alerts[0].event}</h4>
                                                 <h5>From {getTime(alerts[0].start)} until {getTime(alerts[0].end)}</h5>
@@ -99,7 +99,7 @@ const CurrentComponent = ({data, alerts, city, zipCode, currentOpen}) => {
                                         :
                                         null
                                     }
-                                    <Button variant="outlined" color="primary" onClick={() => setDetailsOpen(!detailsOpen)}>{detailsOpen ? "Less details" : "More details"}</Button>
+                                    <Button variant="outlined" color="primary" size="small" onClick={() => setDetailsOpen(!detailsOpen)}>{detailsOpen ? "Less details" : "More details"}</Button>
                                     <Collapse in={detailsOpen} timeout={1000}>
                                         <ul className="list-unstyled mt-3">
                                             <li>Humidity: {data.humidity}%</li>

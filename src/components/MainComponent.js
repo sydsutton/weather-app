@@ -14,18 +14,19 @@ import { useSelector, useDispatch } from "react-redux"
 import { ThemeProvider, createTheme } from "@material-ui/core/styles"
 import { 
     red,
-    teal
+    blue,
+    yellow
 } from "@material-ui/core/colors"
 
 const theme = createTheme({
     palette: {
         primary: {
-            main: teal[500],
-            dark: teal[800]
+            main: blue[700],
+            dark: blue[900]
         },
         secondary: {
-            dark: red[900],
-            main: red[600]
+            main: blue[100],
+            dark: blue[200]
         }
     }
 })
@@ -87,9 +88,9 @@ const MainComponent = () => {
             <div className="container text-center mx-auto">
                 <div className="row">
                     <div className="col">
-                        <div className="jumbotron pt-3">
+                        <div className="jumbotron pt-3 text-light bg-transparent">
                             <h1>QWeather</h1>
-                            <p>Fast. Easy. Q.</p>
+                            <p className="small">The Quickest way to get your weather without stepping outside</p>
                         </div>
                         <InputLabel className="text-light">Enter a zip code</InputLabel>
                             <InputBase
@@ -147,7 +148,7 @@ const MainComponent = () => {
                                     <button 
                                         className="btn btn-sm p-2" 
                                         id="tab-style" 
-                                        style={currentOpen ? {backgroundColor: "#f7f7f7", fontWeight: "bold", zIndex: "10"} : {backgroundColor: "grey"}} 
+                                        style={currentOpen ? {backgroundColor: "#bbdefb", fontWeight: "bold", zIndex: "10"} : {backgroundColor: "grey"}} 
                                         onClick={() => {
                                             setCurrentOpen(!currentOpen)
                                             setHourlyOpen(false)
@@ -159,7 +160,7 @@ const MainComponent = () => {
                                     <button 
                                         className="btn btn-sm p-2 shadow-sm" 
                                         id="tab-style" 
-                                        style={hourlyOpen ? {backgroundColor: "#f7f7f7", fontWeight: "bold", zIndex: "10"} : {backgroundColor: "grey"}} 
+                                        style={hourlyOpen ? {backgroundColor: "#bbdefb", fontWeight: "bold", zIndex: "10"} : {backgroundColor: "grey"}} 
                                         onClick={() => {
                                             setCurrentOpen(false)
                                             setHourlyOpen(!hourlyOpen)
@@ -171,7 +172,7 @@ const MainComponent = () => {
                                     <button 
                                         className="btn btn-sm p-2" 
                                         id="tab-style" 
-                                        style={dailyOpen ? {backgroundColor: "#f7f7f7", fontWeight: "bold", zIndex: "10"} : {backgroundColor: "grey"}} 
+                                        style={dailyOpen ? {backgroundColor: "#bbdefb", fontWeight: "bold", zIndex: "10"} : {backgroundColor: "grey"}} 
                                         onClick={() => {
                                             setCurrentOpen(false)
                                             setHourlyOpen(false)
