@@ -34,7 +34,7 @@ const CurrentComponent = ({data, alerts, city, zipCode, currentOpen}) => {
     let val = Math.floor(( data.wind_deg / 22.5) + .5)
     let arr = ["N","NNE","NE","ENE","E","ESE", "SE", "SSE","S","SSW","SW","WSW","W","WNW","NW","NNW"]
     let direction = arr[(val % 16)]
-    console.log(savedZipCodes.includes(zipCode))
+
     return (
         <div className="container">
             <Collapse in={currentOpen} timeout={0}>

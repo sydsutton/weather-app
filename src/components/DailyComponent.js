@@ -38,11 +38,10 @@ const DailyComponent = ({data, dailyOpen}) => {
             <div className="row">
                 <div className="col">
                     {data.slice(1, 8).map((data, index) => {
-                        console.log(data)
                         return (
                             <Collapse in={dailyOpen} timeout={0}> 
-                                <Card className="full-width bg-light mb-1">
-                                    <Button variant="contained" className="w-100 shadow-md text-dark gradient" onClick={() => {
+                                <Card className="full-width bg-light mb-1" style={{borderRadius: "15px"}}>
+                                    <Button variant="contained" className="w-100 shadow-md text-dark gradient" style={{borderRadius: "0px"}} onClick={() => {
                                                     {index === selectedIndex ? setSelectedIndex() : setSelectedIndex(index)}
                                                 }}
                                             >

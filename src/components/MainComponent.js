@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import Current from "./CurrentComponent"
 import Daily from "./DailyComponent"
+import Hourly from "./HourlyComponent"
 import {
     CircularProgress,
     InputBase,
@@ -50,7 +51,6 @@ const MainComponent = () => {
     const dispatch = useDispatch()
 
     const handleSearch = () => {
-        console.log(zipCode)
         setTempZip()
         setLoading(true)
         setCityData("")
@@ -148,7 +148,7 @@ const MainComponent = () => {
                                     <button 
                                         className="btn btn-sm p-2" 
                                         id="tab-style" 
-                                        style={currentOpen ? {backgroundColor: "rgb(194, 199, 206)", fontWeight: "bold", zIndex: "10"} : {backgroundColor: "grey"}} 
+                                        style={currentOpen ? {backgroundColor: "rgb(229, 237, 243)", fontWeight: "bold", zIndex: "10"} : {backgroundColor: "grey"}} 
                                         onClick={() => {
                                             setCurrentOpen(!currentOpen)
                                             setHourlyOpen(false)
@@ -160,7 +160,7 @@ const MainComponent = () => {
                                     <button 
                                         className="btn btn-sm p-2 shadow-sm" 
                                         id="tab-style" 
-                                        style={hourlyOpen ? {backgroundColor: "rgb(194, 199, 206)", fontWeight: "bold", zIndex: "10"} : {backgroundColor: "grey"}} 
+                                        style={hourlyOpen ? {backgroundColor: "rgb(229, 237, 243)", fontWeight: "bold", zIndex: "10"} : {backgroundColor: "grey"}} 
                                         onClick={() => {
                                             setCurrentOpen(false)
                                             setHourlyOpen(!hourlyOpen)
@@ -172,7 +172,7 @@ const MainComponent = () => {
                                     <button 
                                         className="btn btn-sm p-2" 
                                         id="tab-style" 
-                                        style={dailyOpen ? {backgroundColor: "rgb(194, 199, 206)", fontWeight: "bold", zIndex: "10"} : {backgroundColor: "grey"}} 
+                                        style={dailyOpen ? {backgroundColor: "rgb(229, 237, 243)", fontWeight: "bold", zIndex: "10"} : {backgroundColor: "grey"}} 
                                         onClick={() => {
                                             setCurrentOpen(false)
                                             setHourlyOpen(false)
@@ -183,6 +183,7 @@ const MainComponent = () => {
                                     </button> 
                                 </div>
                                 <Current data={cityData.current} alerts={cityData.alerts} city={city} zipCode={tempZip} currentOpen={currentOpen}/>
+                                <Hourly data={cityData.hourly} hourlyOpen={hourlyOpen} />
                                 <Daily data={cityData.daily} dailyOpen={dailyOpen} />
                             </div>
                         </div>
