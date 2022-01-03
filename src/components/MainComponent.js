@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import Current from "./CurrentComponent"
 import Daily from "./DailyComponent"
 import Hourly from "./HourlyComponent"
+
 import {
     CircularProgress,
     InputBase,
@@ -9,7 +10,7 @@ import {
     Collapse,
     Slide, 
     Card,
-    InputLabel
+    InputLabel,
  } from '@material-ui/core';
 import { useSelector, useDispatch } from "react-redux"
 import { ThemeProvider, createTheme } from "@material-ui/core/styles"
@@ -92,26 +93,34 @@ const MainComponent = () => {
                             <h1>QWeather</h1>
                             <p className="small">The Quickest way to get your weather without stepping outside</p>
                         </div>
-                        <InputLabel className="text-light">Enter a zip code</InputLabel>
-                            <InputBase
-                                type="text" 
-                                onChange={e => setZipCode(e.target.value)}
-                                className="input px-2 mt-2 mr-3 mb-2 shadow-sm"
-                                required={true}
-                                value={zipCode}
-                                error={error ? true : false}
-                            />
-                        <Button 
-                            onClick={() => handleSearch()}
-                            variant="contained"
-                            color="primary"
-                            size="small"
-                        >
-                            Search
-                        </Button>
-                        <div className="row mx-auto justify-content-center pr-5">
-                                <div className="text-danger small d-inline">{error ? "Please enter a valid zip code" : null}</div>
+                        <div className="row">
+                            <div className="col">
+                                <InputLabel className="text-light" id="zipCode">Enter a zip code</InputLabel>
+                                <InputBase
+                                    type="text" 
+                                    labelId="zipCode"
+                                    onChange={e => {
+                                        setError(false)
+                                        setZipCode(e.target.value)}}
+                                    className="input shadow-sm text-light pl-3"
+                                    required={true}
+                                    value={zipCode}
+                                    error={error ? true : false}
+                                />
+                                <Button 
+                                onClick={() => handleSearch()}
+                                variant="contained"
+                                color="primary"
+                                size="small"
+                                className="ml-3"
+                                >
+                                    Search
+                                </Button>
+                                <div className="mx-auto justify-content-center mt-3">
+                                    <div className=" text-danger small">{error ? "Please enter a valid zip code or city" : null}</div>
+                                </div>
                             </div>
+                        </div>
                         <ul className="list-unstyled d-flex flex-wrap justify-content-center">
                             {savedZipCodes.map(zip => {
                                 return (
@@ -141,7 +150,7 @@ const MainComponent = () => {
                     {loading ? <CircularProgress className="mt-5"/> : null}
                 </div>
                 {cityData ?
-                    <Slide in={cityData} direction="up" timeout={1000}>
+                    <Slide in={cityData ? true : false} direction="up" timeout={1000}>
                         <div className="row">
                             <div className="col">
                                 <div className="row justify-content-center">

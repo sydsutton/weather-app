@@ -57,13 +57,15 @@ const CurrentComponent = ({data, alerts, city, zipCode, currentOpen}) => {
                                             Save {zipCode}
                                     </button>
                                     }
-                                    <div className="row justify-content-center mt-3">
-                                            <p>Weather conditions:<h5>{data.weather[0].description.toUpperCase()}</h5></p>
+                                    <div className="row justify-content-between mt-3 align-items-center">
+                                        <div className="col-8 offset-2">
+                                            <p>Weather conditions: <strong>{data.weather[0].description.toUpperCase()}</strong></p>
                                             {data.weather.map((condition,index) => {
                                                 return (
-                                                    <img height="50" key={index} src={`http://openweathermap.org/img/wn/${condition.icon}@2x.png`} alt={condition.description} />
+                                                    <img height="70" key={index} src={`http://openweathermap.org/img/wn/${condition.icon}@2x.png`} alt={condition.description} />
                                                     )})
                                             }
+                                        </div>
                                     </div>
                                     <hr/>
                                     <div className="row">

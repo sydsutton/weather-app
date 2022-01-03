@@ -20,9 +20,9 @@ const HourlyComponent = ({data, hourlyOpen}) => {
     return (
         <div className="container">
             <Collapse in={hourlyOpen} timeout={0}>
-                {data.map((data, index) => {
+                {data.slice(0, 24).map((data, index) => {
                     return (
-                        <Card className="gradient mb-1 full-width">
+                        <Card className="mb-1 full-width gradient" key={index}>
                             <p className="my-auto py-2">{getTime(data.dt) == "0:00" ? "Midnight" : getTime(data.dt) == "12:00" ? "Noon" : getTime(data.dt)}</p>
                         </Card>
                     )

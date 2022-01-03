@@ -33,15 +33,16 @@ const DailyComponent = ({data, dailyOpen}) => {
     let arr = ["N","NNE","NE","ENE","E","ESE", "SE", "SSE","S","SSW","SW","WSW","W","WNW","NW","NNW"]
     let direction = arr[(val % 16)]
 
+
     return (
         <div className="container mb-5">
             <div className="row">
                 <div className="col">
                     {data.slice(1, 8).map((data, index) => {
                         return (
-                            <Collapse in={dailyOpen} timeout={0}> 
-                                <Card className="full-width bg-light mb-1" style={{borderRadius: "15px"}}>
-                                    <Button variant="contained" className="w-100 shadow-md text-dark gradient" style={{borderRadius: "0px"}} onClick={() => {
+                            <Collapse in={dailyOpen} timeout={0} key={index}> 
+                                <Card className="full-width bg-light mb-1">
+                                    <Button variant="contained" className="w-100 shadow-md text-dark gradient" onClick={() => {
                                                     {index === selectedIndex ? setSelectedIndex() : setSelectedIndex(index)}
                                                 }}
                                             >
@@ -54,14 +55,16 @@ const DailyComponent = ({data, dailyOpen}) => {
                                                 <Collapse in={index === selectedIndex ? false : true} timeout={1000}> 
                                                     <hr className="mt-0" />
                                                     <div className="row">
-                                                        <div className="col-5 my-auto text-right">
+                                                        <div className="col-5 my-auto text-right pb-3">
                                                             <img src={`http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`} alt={data.weather[0].description} />
                                                         </div>
                                                         <div className="col-5 my-auto text-left">
                                                             <ul className="list-unstyled small">
-                                                                <li>Max temperature: {Math.round(data.temp.max)}°</li>
-                                                                <li>Feels like: {Math.round(data.feels_like.eve)}°</li>
+                                                                <li>High: <strong>{Math.round(data.temp.max)}°</strong></li>
+                                                                <li>Low: <strong>{Math.round(data.temp.min)}°</strong></li>
                                                                 <li>{data.weather[0].description}</li>
+                                                                <li>Sunrise: <strong>{getTime(data.sunrise)} AM</strong></li>
+                                                                <li>Sunset: <strong>{getTime(data.sunset)} AM</strong></li>
                                                             </ul>
                                                         </div>
                                                     </div>
@@ -73,7 +76,7 @@ const DailyComponent = ({data, dailyOpen}) => {
                                             <div className="row">
                                                 <div className="col-1 d-sm-block d-none">
                                                 </div>
-                                                <div className="col-sm-5">
+                                                <div className="col-sm-5 ">
                                                     {data.weather.length > 1 ? data.weather.map((condition,index) => {
                                                         return (
                                                             <img key={index} src={`http://openweathermap.org/img/wn/${condition.icon}@2x.png`} alt={condition.description} />
