@@ -4,8 +4,7 @@ import {
     Card,
     Button,
     Collapse,
-    Slide,
-    Slider,
+
     Dialog
 } from "@material-ui/core"
 import { useSelector, useDispatch } from "react-redux"
@@ -88,20 +87,22 @@ const CurrentComponent = ({data, alerts, city, zipCode, currentOpen}) => {
                                 <div className="col">
                                     {alerts ? 
                                         <div>
-                                            <Button className="btn btn-danger btn-sm" onClick={() => setAlertOpen(!alertOpen)}>{!alertOpen ? "See" : "Hide"} alerts</Button>
-                                            <Collapse in={alertOpen} className="mb-3" timeout={1000}>
+                                            <Button variant="contained" size="small" color="secondary" onClick={() => setAlertOpen(!alertOpen)}>{!alertOpen ? "See" : "Hide"} alerts</Button>
+                                            <Collapse in={alertOpen} className="my-2" timeout={1000}>
                                                 <h4>Alert: {alerts[0].event}</h4>
                                                 <h5>From {getTime(alerts[0].start)} until {getTime(alerts[0].end)}</h5>
                                                 <Button variant="contained" size="small" onClick={() => setAlertDetailOpen(!alertDetailOpen)}>See alert details</Button>
+                                                <hr/>
                                                 <Dialog open={alertDetailOpen} onClose={() => setAlertDetailOpen(!alertDetailOpen)}>
-                                                    <p className="small m-3">Alert: {alerts[0].description}</p>
+                                                    <h5 className="mt-3 border-bottom pb-3">{alerts[0].event}</h5>
+                                                    <p className="small px-4 py-3">Alert: {alerts[0].description}</p>
                                                 </Dialog>
                                             </Collapse>
                                         </div>
                                         :
                                         null
                                     }
-                                    <Button variant="contained" color="secondary" size="small" onClick={() => setDetailsOpen(!detailsOpen)}>{detailsOpen ? "Less details" : "More details"}</Button>
+                                    <Button variant="contained" color="primary" size="small" onClick={() => setDetailsOpen(!detailsOpen)}>{detailsOpen ? "Less details" : "More details"}</Button>
                                     <Collapse in={detailsOpen} timeout={1000}>
                                         <ul className="list-unstyled mt-3">
                                             <li>Humidity: {data.humidity}%</li>

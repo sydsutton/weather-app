@@ -2,8 +2,7 @@ import React, { useState } from "react"
 
 import {
     Card,
-    Collapse,
-    Button
+    Collapse
 } from "@material-ui/core"
 
 const HourlyComponent = ({data, hourlyOpen}) => {
@@ -28,11 +27,13 @@ const HourlyComponent = ({data, hourlyOpen}) => {
                 {data.slice(0, 24).map((data, index) => {
                     return (
                         <Card className="mb-1 full-width bg-light" key={index}>
-                            <Button
+                            <button
                                 className="w-100 px-4 py-0 gradient button" 
+                                style={{border: "none"}}
                                 onClick={() => index === selectedIndex ? setSelectedIndex() : setSelectedIndex(index)}
                             >
                                 <div className="col">
+                                    <h4 className="p-0 m-0 float-right pb-2">{index === selectedIndex ? "-" : "+"}</h4>
                                     <h6 className="mt-3">{getTime(data.dt)}</h6>
                                     <Collapse in={index === selectedIndex ? false : true} timeout={1000}>
                                         <hr className="my-0" />
@@ -42,10 +43,9 @@ const HourlyComponent = ({data, hourlyOpen}) => {
                                         </ul>
                                     </Collapse>
                                 </div>
-                                <h4 className="p-0 m-0">{index === selectedIndex ? "-" : "+"}</h4>
-                            </Button>
+                            </button>
                             <Collapse in={index === selectedIndex ? true : false} timeout={1000}>
-                                <div className="p-3 bg-light mx-auto mb-4 " key={index}> 
+                                <div className="p-3 bg-light mx-auto" key={index}> 
                                     <div className="row">
                                         <div className="col-1 d-sm-block d-none">
                                         </div>

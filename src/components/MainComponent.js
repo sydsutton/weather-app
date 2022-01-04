@@ -7,19 +7,14 @@ import {
     CircularProgress,
     InputBase,
     Button,
-    Collapse,
     Slide, 
-    Card,
     InputLabel,
  } from '@material-ui/core';
 import { useSelector, useDispatch } from "react-redux"
 import { ThemeProvider, createTheme } from "@material-ui/core/styles"
 import { 
-    red,
     blue,
-    purple,
-    teal,
-    grey
+    red
 } from "@material-ui/core/colors"
 
 const theme = createTheme({
@@ -29,8 +24,8 @@ const theme = createTheme({
             dark: blue[900]
         },
         secondary: {
-            main: purple[500],
-            dark: purple[700]
+            main: red[700],
+            dark: red[900]
         }
     }
 })
@@ -93,6 +88,7 @@ const MainComponent = () => {
                     <div className="col">
                         <div className="jumbotron pt-3 text-light">
                             <h1>QWeather</h1>
+                            <hr className="bg-light w-75 mx-auto" />
                             <p className="small mt-4 font-weight-light">Search and save weather information. <br/>The Quickest way to get your weather without stepping outside<br/>
                             </p>
                         </div>
@@ -112,7 +108,7 @@ const MainComponent = () => {
                                 <Button 
                                 onClick={() => handleSearch()}
                                 variant="contained"
-                                color="secondary"
+                                color="primary"
                                 size="small"
                                 className="ml-3"
                                 >

@@ -2,7 +2,6 @@ import React, { useState } from "react"
 
 import {
     Card,
-    Button,
     Collapse,
 } from "@material-ui/core"
 
@@ -42,7 +41,7 @@ const DailyComponent = ({data, dailyOpen}) => {
                         return (
                             <Collapse in={dailyOpen} timeout={0} key={index}> 
                                 <Card className="full-width bg-light mb-1">
-                                    <Button variant="contained" className="w-100 shadow-md text-dark gradient" onClick={() => {
+                                    <button className="w-100 shadow-md text-dark gradient" style={{border: "none"}} onClick={() => {
                                                     {index === selectedIndex ? setSelectedIndex() : setSelectedIndex(index)}
                                                 }}
                                             >
@@ -70,7 +69,7 @@ const DailyComponent = ({data, dailyOpen}) => {
                                                     </div>
                                                 </Collapse>
                                         </div>
-                                    </Button>
+                                    </button>
                                         <Collapse in={index === selectedIndex ? true : false} timeout={1000}>
                                         <div className="p-3 bg-light mx-auto mb-4" key={index}> 
                                             <div className="row">
