@@ -88,7 +88,7 @@ const MainComponent = () => {
                     <div className="col">
                         <div className="jumbotron pt-3 text-light">
                             <h1>QWeather</h1>
-                            <hr className="bg-light w-75 mx-auto" />
+                            <hr className="bg-light w-50 mx-auto" />
                             <p className="small mt-4 font-weight-light">Search and save weather information. <br/>The Quickest way to get your weather without stepping outside<br/>
                             </p>
                         </div>
@@ -174,7 +174,7 @@ const MainComponent = () => {
                                             setDailyOpen(false)
                                         }}
                                     >
-                                        Hourly Weather
+                                        Next 24 Hours
                                     </button> 
                                     <button 
                                         className="btn btn-sm p-2" 
@@ -186,7 +186,7 @@ const MainComponent = () => {
                                             setDailyOpen(true)
                                         }}
                                     >
-                                        Daily Weather
+                                        Next 7 Days
                                     </button> 
                                 </div>
                                 <Current data={cityData.current} alerts={cityData.alerts} city={city} zipCode={tempZip} currentOpen={currentOpen}/>

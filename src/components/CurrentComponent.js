@@ -4,9 +4,10 @@ import {
     Card,
     Button,
     Collapse,
-
     Dialog
 } from "@material-ui/core"
+import Thermometer from "react-thermometer-component"
+
 import { useSelector, useDispatch } from "react-redux"
 
 const CurrentComponent = ({data, alerts, city, zipCode, currentOpen}) => {
@@ -37,7 +38,7 @@ const CurrentComponent = ({data, alerts, city, zipCode, currentOpen}) => {
     return (
         <div className="container">
             <Collapse in={currentOpen} timeout={0}>
-                <Card className="mb-5 pb-3 full-width text-dark gradient" >
+                <Card className="mb-5 pb-3 full-width text-dark gradient bg-transparent" >
                     <div className="row">
                         <div className="col justify-content-center">
                             <div className="row align-items-center">
@@ -56,8 +57,18 @@ const CurrentComponent = ({data, alerts, city, zipCode, currentOpen}) => {
                                             Save {zipCode}
                                     </button>
                                     }
-                                    <div className="row justify-content-between mt-3 align-items-center">
-                                        <div className="col-8 offset-2">
+                                    <div className="row align-items-center">
+                                        <div className="col-3 ml-3">
+                                            <Thermometer
+                                                value={Math.round(data.temp)}
+                                                max='120'
+                                                format="°F"
+                                                size="small"
+                                                height="200"
+                                                theme="light"
+                                            />
+                                        </div>
+                                        <div className="col-8">
                                             <p>Weather conditions: <strong>{data.weather[0].description.toUpperCase()}</strong></p>
                                             {data.weather.map((condition,index) => {
                                                 return (

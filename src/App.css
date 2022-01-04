@@ -3,7 +3,7 @@ body {
   margin: 0;
   padding: 0;
   text-align: center;
-  background-image: linear-gradient(175deg, #330909, #963232);
+  background-image: linear-gradient(175deg, #091633, #466eaa);
   min-height: 100vh;
   background-repeat: no-repeat;
   background-size: cover;
@@ -16,7 +16,7 @@ body {
 }
 
 .input {
-  background-color: #8f3232;
+  background-color: #4e76aa;
   border-radius: 10px;
 }
 
@@ -26,7 +26,7 @@ body {
 }
 
 .jumbotron {
-      background-image: linear-gradient(175deg, #8f3232, #6b1616);
+      background-image: linear-gradient(175deg, #4e76aa, #26396d);
       background-size: cover;
       height: 170px;
   } 
@@ -45,9 +45,9 @@ body {
   }
 
   img {
-    background-color: #3a77d3;
     border-radius: 20px;
     box-shadow: 5px 5px 5px rgba(0,0,0,.15);
+    background-image: linear-gradient(175deg, #102452, #466eaa);
   }
 
   .full-width {
