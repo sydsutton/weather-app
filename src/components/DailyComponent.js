@@ -76,7 +76,7 @@ const DailyComponent = ({data, dailyOpen}) => {
                                             <div className="row">
                                                 <div className="col-1 d-sm-block d-none">
                                                 </div>
-                                                <div className="col-sm-5 ">
+                                                <div className="col-sm-5 text-center">
                                                     {data.weather.length > 1 ? data.weather.map((condition,index) => {
                                                         return (
                                                             <img key={index} src={`http://openweathermap.org/img/wn/${condition.icon}@2x.png`} alt={condition.description} />
@@ -86,7 +86,7 @@ const DailyComponent = ({data, dailyOpen}) => {
                                                     }
                                                 </div>
                                                 <div className="col-sm-6">
-                                                    <ul className="list-unstyled text-left mt-3">
+                                                    <ul className="list-unstyled text-center text-sm-left mt-3">
                                                         <li>Max temperature: {Math.round(data.temp.max)}° F</li>
                                                         <li>Min temperature: {Math.round(data.temp.min)}° F</li>
                                                         <br/>
@@ -97,9 +97,9 @@ const DailyComponent = ({data, dailyOpen}) => {
                                                         <li>Feels like: {Math.round(data.feels_like.night)}° F</li>
                                                         <hr/>
                                                         <li>{data.weather[0].description}</li>
+                                                        <li>{data.clouds}% cloud coverage</li>
                                                         <li>Humidity: {data.humidity}%</li>
                                                         <li>UV index: {data.uvi}</li>
-                                                        <li>Average visibility: {Math.round(data.visibility / 3.28084)} feet</li>
                                                         <li>Wind speed: {Math.round(data.wind_speed * 2.23693629)} mph</li>
                                                         {data.wind_gust ? <li>Wind gusts: {Math.round(data.wind_gust * 2.23693629)} mph</li> : null}
                                                         <li>Wind direction: {direction}</li>

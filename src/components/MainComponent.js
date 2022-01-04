@@ -17,7 +17,9 @@ import { ThemeProvider, createTheme } from "@material-ui/core/styles"
 import { 
     red,
     blue,
-    yellow
+    purple,
+    teal,
+    grey
 } from "@material-ui/core/colors"
 
 const theme = createTheme({
@@ -27,8 +29,8 @@ const theme = createTheme({
             dark: blue[900]
         },
         secondary: {
-            main: blue[100],
-            dark: blue[200]
+            main: purple[500],
+            dark: purple[700]
         }
     }
 })
@@ -89,16 +91,16 @@ const MainComponent = () => {
             <div className="container text-center mx-auto">
                 <div className="row">
                     <div className="col">
-                        <div className="jumbotron pt-3 text-light bg-transparent">
+                        <div className="jumbotron pt-3 text-light">
                             <h1>QWeather</h1>
-                            <p className="small">The Quickest way to get your weather without stepping outside</p>
+                            <p className="small mt-4 font-weight-light">Search and save weather information. <br/>The Quickest way to get your weather without stepping outside<br/>
+                            </p>
                         </div>
                         <div className="row">
                             <div className="col">
-                                <InputLabel className="text-light" id="zipCode">Enter a zip code</InputLabel>
+                                <InputLabel className="text-light">Enter a zip code</InputLabel>
                                 <InputBase
                                     type="text" 
-                                    labelId="zipCode"
                                     onChange={e => {
                                         setError(false)
                                         setZipCode(e.target.value)}}
@@ -110,7 +112,7 @@ const MainComponent = () => {
                                 <Button 
                                 onClick={() => handleSearch()}
                                 variant="contained"
-                                color="primary"
+                                color="secondary"
                                 size="small"
                                 className="ml-3"
                                 >
@@ -159,7 +161,7 @@ const MainComponent = () => {
                                         id="tab-style" 
                                         style={currentOpen ? {backgroundColor: "rgb(229, 237, 243)", fontWeight: "bold", zIndex: "10"} : {backgroundColor: "grey"}} 
                                         onClick={() => {
-                                            setCurrentOpen(!currentOpen)
+                                            setCurrentOpen(true)
                                             setHourlyOpen(false)
                                             setDailyOpen(false)
                                         }}
@@ -167,12 +169,12 @@ const MainComponent = () => {
                                         Current Weather
                                     </button> 
                                     <button 
-                                        className="btn btn-sm p-2 shadow-sm" 
+                                        className="btn btn-sm p-2" 
                                         id="tab-style" 
                                         style={hourlyOpen ? {backgroundColor: "rgb(229, 237, 243)", fontWeight: "bold", zIndex: "10"} : {backgroundColor: "grey"}} 
                                         onClick={() => {
                                             setCurrentOpen(false)
-                                            setHourlyOpen(!hourlyOpen)
+                                            setHourlyOpen(true)
                                             setDailyOpen(false)
                                         }}
                                     >
@@ -185,7 +187,7 @@ const MainComponent = () => {
                                         onClick={() => {
                                             setCurrentOpen(false)
                                             setHourlyOpen(false)
-                                            setDailyOpen(!dailyOpen)
+                                            setDailyOpen(true)
                                         }}
                                     >
                                         Daily Weather

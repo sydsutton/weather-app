@@ -101,7 +101,7 @@ const CurrentComponent = ({data, alerts, city, zipCode, currentOpen}) => {
                                         :
                                         null
                                     }
-                                    <Button variant="outlined" color="primary" size="small" onClick={() => setDetailsOpen(!detailsOpen)}>{detailsOpen ? "Less details" : "More details"}</Button>
+                                    <Button variant="contained" color="secondary" size="small" onClick={() => setDetailsOpen(!detailsOpen)}>{detailsOpen ? "Less details" : "More details"}</Button>
                                     <Collapse in={detailsOpen} timeout={1000}>
                                         <ul className="list-unstyled mt-3">
                                             <li>Humidity: {data.humidity}%</li>
