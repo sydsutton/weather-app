@@ -10,14 +10,14 @@
 #### _This is a practical weather-search application that allows a user to search for any zip code in order to see current or predicted weather for that area_
 
 ## Technologies Used
-#_@material-ui/core: ^4.12.3,_
-#_@testing-library/jest-dom: ^5.14.1,_
-#_dotenv: ^10.0.0,_
-#_react: ^17.0.2,_
-#_react-dom: ^17.0.2,_
-#_react-redux: ^7.2.6,_
-#_react-thermometer-component: ^1.0.1,_
-#_redux: ^4.1.2,_
+_@material-ui/core: ^4.12.3,_
+_@testing-library/jest-dom: ^5.14.1,_
+_dotenv: ^10.0.0,_
+_react: ^17.0.2,_
+_react-dom: ^17.0.2,_
+_react-redux: ^7.2.6,_
+_react-thermometer-component: ^1.0.1,_
+_redux: ^4.1.2,_
 
 ## Description
 
