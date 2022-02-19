@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import Current from "./CurrentComponent"
 import Daily from "./DailyComponent"
 import Hourly from "./HourlyComponent"
+import logo from "../images/logo.png"
 
 import {
     CircularProgress,
@@ -87,7 +88,10 @@ const MainComponent = () => {
                 <div className="row">
                     <div className="col">
                         <div className="jumbotron pt-3 text-light">
-                            <h1>QWeather</h1>
+                            <div className="row justify-content-center align-items-center">
+                                <img src={logo} className="mr-3" height="40"/>
+                                <h1>QWeather</h1>
+                            </div>
                             <hr className="bg-light w-50 mx-auto" />
                             <p className="small mt-4 font-weight-light">Search and save weather information. <br/>The Quickest way to get your weather without stepping outside<br/>
                             </p>
